@@ -26,6 +26,16 @@ const forecastHum = {};
 const today = moment().format('MM' + "/" + 'DD' + '/' + 'YYYY');
 const APIKey = "&units=imperial&APPID=209189943a26243e19e862011b35aa5e";
 const url =  "https://api.openweathermap.org/data/2.5/weather?q=";
+const cities = JSON.parse(localStorage.getItem("City"));
+
+// Run the code once the entire page is ready
+$(document).ready(function (){
+    var userInput = cities[cities.length - 1];
+    currentWeather(userInput);
+    forecast(userInput);
+    savedSearch ();
+
+});
 
 // Display current weather of a city
 function currentWeather(userInput) {
@@ -54,30 +64,31 @@ function currentWeather(userInput) {
             tempDescription.text(description);
             humidityText.text("Humidity: " + humidity + " %");
             windText.text("Wind Speed: " + wind + " MPH");
+            
+            fetch (uvIndexURL, { // fetch UV index from uvIndexURL
+            })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function(uvIndex){
+                    let uv = uvIndex.value; // grab UV index value from API call
+                    let uvAlert = "";
+                    if (uv <= 3) { // UV minimal
+                        uvAlert = "green";
+                    } else if (uv >= 3 & uv <= 6) { // UV moderate
+                        uvAlert = "yellow";
+                    } else if (uv >= 6 & uv <= 8) { // UV High
+                        uvAlert = "orange";
+                    } else {
+                        uvAlert = "red"; // UV Very High
+                    }
+                    uvIndexText.empty();
+                    const uvText = $("<p>").attr("class", "card-text").text("UV Index: ");
+                    uvText.append($("<span>").attr("class", "uvindex").attr("style", ("background-color: " + uvAlert)).text(uv))
+                    uvIndexText.append(uvText);
+                    displayCard.attr("style", "display: flex; width: 98%;");
+            });
         });
-        // fetch (uvIndexURL, { // fetch UV index from uvIndexURL
-        // })
-        //     .then(function (response) {
-        //         return response.json();
-        //     })
-        //     .then(function(uvIndex){
-        //         let uv = uvIndex.value; // grab UV index value from API call
-        //         let uvAlert = "";
-        //         if (uv <= 3) { // UV minimal
-        //             uvAlert = "green";
-        //         } else if (uv >= 3 & uv <= 6) { // UV moderate
-        //             uvAlert = "yellow";
-        //         } else if (uv >= 6 & uv <= 8) { // UV High
-        //             uvAlert = "orange";
-        //         } else {
-        //             uvAlert = "red"; // UV Very High
-        //         }
-        //         uvIndexText.empty();
-        //         const uvText = $("<p>").attr("class", "card-text").text("UV Index: ");
-        //         uvText.append($("<span>").attr("class", "uvindex").attr("style", ("background-color: " + uvAlert)).text(uv))
-        //         uvIndexText.append(uvText);
-        //         displayCard.attr("style", "display: flex; width: 98%");
-        // });
 }
 
 // Function for creating the 5 day forcast cards
@@ -126,4 +137,25 @@ function forecast (userInput) {
                 weatherForecast.append(fiveDayForecast); // add 5 day forecast to weatherForecast section
                 };
             })
+}
+
+// Store the searched cities
+function storeSearch (userInput) {
+    var userInput = $("#searchCity").val().trim().toLowerCase();
+    var containsCity = false;
+
+    if (cities != null) {
+
+		$(cities).each(function(i) { // check to see if the stored data has the searched city
+			if (cities[i] === userInput) {
+				containsCity = true;
+			}
+		});
+	}
+
+	if (containsCity === false) { // if the city does not exist in storage, save the city
+        cities.push(userInput);
+	}
+
+	localStorage.setItem("City", JSON.stringify(cities));
 }
