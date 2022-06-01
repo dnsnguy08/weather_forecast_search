@@ -55,4 +55,27 @@ function currentWeather(userInput) {
             humidityText.text("Humidity: " + humidity + " %");
             windText.text("Wind Speed: " + wind + " MPH");
         });
+        // fetch (uvIndexURL, { // fetch UV index from uvIndexURL
+        // })
+        //     .then(function (response) {
+        //         return response.json();
+        //     })
+        //     .then(function(uvIndex){
+        //         let uv = uvIndex.value; // grab UV index value from API call
+        //         let uvAlert = "";
+        //         if (uv <= 3) { // UV minimal
+        //             uvAlert = "green";
+        //         } else if (uv >= 3 & uv <= 6) { // UV moderate
+        //             uvAlert = "yellow";
+        //         } else if (uv >= 6 & uv <= 8) { // UV High
+        //             uvAlert = "orange";
+        //         } else {
+        //             uvAlert = "red"; // UV Very High
+        //         }
+        //         uvIndexText.empty();
+        //         const uvText = $("<p>").attr("class", "card-text").text("UV Index: ");
+        //         uvText.append($("<span>").attr("class", "uvindex").attr("style", ("background-color: " + uvAlert)).text(uv))
+        //         uvIndexText.append(uvText);
+        //         displayCard.attr("style", "display: flex; width: 98%");
+        // });
 }
