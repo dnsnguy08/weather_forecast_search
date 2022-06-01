@@ -79,3 +79,51 @@ function currentWeather(userInput) {
         //         displayCard.attr("style", "display: flex; width: 98%");
         // });
 }
+
+// Function for creating the 5 day forcast cards
+function forecast (userInput) {
+    weatherForecast.empty(); // empty all child elements when function is ran
+    cardsRow.empty();
+    const fiveDayForecast = $("<h2>").attr("class", "forecast").text("5-Day Forecast: ");
+    // const forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=newark&units=imperial&APPID=209189943a26243e19e862011b35aa5e";
+    const forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + userInput + "&units=imperial&APPID=209189943a26243e19e862011b35aa5e"; // Forecast API URL
+    
+    fetch(forecastURL, {
+    })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function(data){ 
+            for (let i = 0; i < data.list.length; i += 8){
+                
+                forecastDate[i] = data.list[i].dt_txt; // Grab the forecast data from API call
+                forecastIcon[i] = data.list[i].weather[0].icon;
+                forecastTemp[i] = data.list[i].main.temp; 
+                forecastHum[i] = data.list[i].main.humidity;  
+
+                let addCol = $("<div>").attr("class", "col-2"); // add new column div
+                cardsRow.append(addCol);
+
+                let addCard = $("<div>").attr("class", "card text-white bg-info mb-3"); // add card div into column
+                addCard.attr("style", "max-width: 18rem;")
+                addCol.append(addCard);
+
+                let cardBody = $("<div>").attr("class", "card-body"); // add card body div to card
+                addCard.append(cardBody);
+
+                let cardDate = $("<h5>").attr("class", "card-title").text(moment(forecastDate[i]).format("MMM Do")); // add date info to card body
+                cardBody.append(cardDate);
+
+                let cardImage = $("<img>").attr("class", "card-img-top").attr("src", "https://openweathermap.org/img/wn/" + forecastIcon[i] + "@2x.png"); // add weather icon to card body
+                cardBody.append(cardImage);
+
+                let cardTemp = $("<p>").attr("class", "card-text").text("Temp: " + Math.round(forecastTemp[i]) + "ºF"); // Round the temperature value for readability, add to card body
+                cardBody.append(cardTemp);
+
+                let cardHum = $("<p>").attr("class", "card-text").text("Humidity: " + forecastHum[i] + " %"); // add humidity info to card body
+                cardBody.append(cardHum);
+
+                weatherForecast.append(fiveDayForecast); // add 5 day forecast to weatherForecast section
+                };
+            })
+}
