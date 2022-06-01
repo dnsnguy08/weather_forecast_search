@@ -1,0 +1,16 @@
+a {
+    color: white;
+    font-size: 30px;
+    text-decoration: none;
+}
+
+#nav {
+    justify-content: center;
+    color: white;
+}
+
+.form-inline {
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+}

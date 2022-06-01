@@ -16,6 +16,60 @@
             <a href="index.html"><i class="bi bi-cloud-sun"></i>  Weather Dashboard  <i class="bi bi-cloud-sun"></i></a>
     </nav>
 
+    <!-- Container -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4">
+                <!-- <div class="row" id="row1">
+                    Search for a City:
+                </div> -->
+                <div class="row">
+                    <form class="form-inline my-2 my-sm-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search for a City!" aria-label="Search" id="searchCity">
+                        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="bi bi-cloud-sun"></i></button>
+                    </form>
+                    <div class="row" id="savedSearch">
+                        <div class="card" style="width: 18rem;" id="buttonsList">
+                            <!-- Buttons of last search goes here -->
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+    
+            <!-- Weather Card -->    
+            <div class="col-lg-8" id="allWeather">
+                <div class="row" id="weatherCard">
+                    <div class="card" style="width: 98%;" id="displayCard">
+
+                        <div class="row">
+
+                            <div class="col-lg-6">
+                                <div class="card-body" id="card">
+                                    <h2 class="card-title" id="city"></h2>
+                                    <p class="card-text" id="temp"></p>
+                                    <p class="card-text" id="tempDescription"></p>
+                                    <p class="card-text" id="humidity"></p>
+                                    <p class="card-text" id="wind"></p>
+                                    <p class="card-tet" id="uvIndex"></p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4" id="mainIcon">
+                                <!-- Main Icon -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- 5 Day Forecast -->
+                <div class="row" id="forecastRow"></div>
+
+                <div class="row" id="cardsRow">
+                    <!-- Cards Goes Here -->
+                </div>
+            </div>
+        </div>
+    </div>
     
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
