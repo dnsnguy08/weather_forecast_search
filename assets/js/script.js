@@ -17,7 +17,7 @@ const forecastHum = {};
 const today = moment().format('MM' + "/" + 'DD' + '/' + 'YYYY');
 const APIKey = "&units=imperial&APPID=209189943a26243e19e862011b35aa5e";
 const url =  "https://api.openweathermap.org/data/2.5/weather?q=";
-const cities = JSON.parse(localStorage.getItem("City"));
+const cities = JSON.parse(localStorage.getItem("City")) || [];
 
 // Run the code once the entire page is ready
 $(document).ready(function (){
