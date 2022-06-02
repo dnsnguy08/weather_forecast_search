@@ -1,12 +1,3 @@
-// fetch("https://api.openweathermap.org/data/2.5/weather?q=newark&units=imperial&APPID=209189943a26243e19e862011b35aa5e", {
-// })
-//   .then(function (response) {
-//     return response.json();
-//   })
-//   .then(function (data) {
-//     console.log(data);
-//   });
-
 // Select all required elements and assign them to variables
 const cityText = $("#city");
 const tempText = $("#temp");
@@ -96,7 +87,6 @@ function forecast (userInput) {
     weatherForecast.empty(); // empty all child elements when function is ran
     cardsRow.empty();
     const fiveDayForecast = $("<h2>").attr("class", "forecast").text("5-Day Forecast: ");
-    // const forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=newark&units=imperial&APPID=209189943a26243e19e862011b35aa5e";
     const forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + userInput + "&units=imperial&APPID=209189943a26243e19e862011b35aa5e"; // Forecast API URL
     
     fetch(forecastURL, {
