@@ -159,3 +159,20 @@ function storeSearch (userInput) {
 
 	localStorage.setItem("City", JSON.stringify(cities));
 }
+
+// Display saved city searches
+function savedSearch () {
+    buttonList.empty() // empty all child elements when function is ran
+    for (var i = 0; i < cities.length; i ++) {
+        var newButton = $("<button>").attr("type", "button").attr("class","savedBtn btn btn-secondary btn-lg btn-block"); // button variable for cities
+        newButton.attr("data-name", cities[i])
+        newButton.text(cities[i]); // add city to button text
+        buttonList.prepend(newButton); // add searched city to the button list
+    }
+    $(".savedBtn").on("click", function(event){ // event listener for when a saved button is clicked
+        event.preventDefault();
+        var userInput = $(this).data("name");
+        currentWeather(userInput); // pull the current weather and forecast when a saved city button is clicked
+        forecast(userInput);
+    })
+}
