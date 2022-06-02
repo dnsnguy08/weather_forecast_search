@@ -86,7 +86,7 @@ function currentWeather(userInput) {
                     const uvText = $("<p>").attr("class", "card-text").text("UV Index: ");
                     uvText.append($("<span>").attr("class", "uvindex").attr("style", ("background-color: " + uvAlert)).text(uv))
                     uvIndexText.append(uvText);
-                    displayCard.attr("style", "display: flex; width: 98%;");
+                    displayCard.attr("style", "display: flex; width: 95%;");
             });
         });
 }
@@ -176,3 +176,17 @@ function savedSearch () {
         forecast(userInput);
     })
 }
+
+// event listener for clicking search button
+$(".btn").on("click", function (event){
+    event.preventDefault();
+    if ($("#searchCity").val() === "") { // alert user if no text was detected in search
+    alert("Please enter a valid city to view its current weather.");
+    } else
+    var userInput = $("#searchCity").val().trim().toLowerCase();
+    currentWeather(userInput); // pull current weather and forecast data after city search
+    forecast(userInput);
+    storeSearch(); // store the searched city
+    savedSearch(); // add the searched city to the button list
+    $("#searchCity").val(""); // empty the search bar
+})
