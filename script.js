@@ -33,7 +33,7 @@ $(document).ready(function (){
     var userInput = cities[cities.length - 1];
     currentWeather(userInput);
     forecast(userInput);
-    savedSearch ();
+    savedSearch();
 
 });
 
