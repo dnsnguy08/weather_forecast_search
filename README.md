@@ -41,7 +41,7 @@ Read through the documentation for setup and usage instructions. Use localStorag
 
 ### Screenshot
 
-![Weather_Dashboard](./assets/images/screenshot.jpg)
+![Weather_Dashboard](./assets/images/screenshot_update.jpg)
 
 
 ### Links
