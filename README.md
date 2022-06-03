@@ -47,7 +47,7 @@ Read through the documentation for setup and usage instructions. Use localStorag
 ### Links
 
 - Solution URL: [https://github.com/dnsnguy08/weather_forecast_search](https://github.com/dnsnguy08/weather_forecast_search)
-- Live Site URL: [(https://dnsnguy08.github.io/weather_forecast_search/](https://dnsnguy08.github.io/weather_forecast_search/)
+- Live Site URL: [https://dnsnguy08.github.io/weather_forecast_search/](https://dnsnguy08.github.io/weather_forecast_search/)
 
 ## My process
 
