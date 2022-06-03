@@ -14,6 +14,7 @@ const forecastDate = {};
 const forecastIcon = {};
 const forecastTemp = {};
 const forecastHum = {};
+const forecastWind = {};
 const today = moment().format('MM' + "/" + 'DD' + '/' + 'YYYY');
 const APIKey = "&units=imperial&APPID=209189943a26243e19e862011b35aa5e";
 const url =  "https://api.openweathermap.org/data/2.5/weather?q=";
@@ -99,7 +100,8 @@ function forecast (userInput) {
                 
                 forecastDate[i] = data.list[i].dt_txt; // Grab the forecast data from API call
                 forecastIcon[i] = data.list[i].weather[0].icon;
-                forecastTemp[i] = data.list[i].main.temp; 
+                forecastTemp[i] = data.list[i].main.temp;
+                forecastWind[i] = data.list[i].wind.speed;
                 forecastHum[i] = data.list[i].main.humidity;  
 
                 let addCol = $("<div>").attr("class", "col-2"); // add new column div
@@ -120,6 +122,9 @@ function forecast (userInput) {
 
                 let cardTemp = $("<p>").attr("class", "card-text").text("Temp: " + Math.round(forecastTemp[i]) + "ºF"); // Round the temperature value for readability, add to card body
                 cardBody.append(cardTemp);
+
+                let cardWind = $("<p>").attr("class", "card-text").text("Wind: " + forecastWind[i] + " MPH"); // add Wind speed to card body
+                cardBody.append(cardWind);
 
                 let cardHum = $("<p>").attr("class", "card-text").text("Humidity: " + forecastHum[i] + " %"); // add humidity info to card body
                 cardBody.append(cardHum);
